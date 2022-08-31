@@ -1,7 +1,7 @@
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
-    basePath: "nextjs-pages",
-    assetPrefix: "nextjs-pages",
+    /* config options here */
 }
-
-
-export default nextConfig;
+module.exports = nextConfig
