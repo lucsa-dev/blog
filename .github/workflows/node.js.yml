@@ -24,6 +24,6 @@ jobs:
     - run: touch ./out/.nojekyll
 
     - name: Deploy 🚀
-      uses: Lucasalmeida-ux/github-pages-deploy-action@v4
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
           folder: out
