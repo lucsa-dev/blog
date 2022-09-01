@@ -3,6 +3,6 @@
  */
 const nextConfig = {
     basePath: "/blog",
-    assetPrefix: "/blog/"
+    assetsPrefix: "/blog/"
 }
 module.exports = nextConfig
