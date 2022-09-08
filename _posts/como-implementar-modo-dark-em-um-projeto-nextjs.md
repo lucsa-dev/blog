@@ -9,9 +9,7 @@ author:
 
 ## Introdução
 
-A idéia é clonar um exemplo de repositório oficial que já contém um [blog markdown do nextjs](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)
-
-clona-lo localmente, mudar o que quiser e configura-lo para gerar um site estático a ser hospedado pelo github pages.
+A idéia é clonar o repositório oficial que já contém um [blog markdown do nextjs](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)
 
 ## Criar um novo projeto Blog Nextjs
 
@@ -25,11 +23,11 @@ não se esqueça de trocar o texto ¨blog-starter-app¨ pelo nome do diretório 
 ```bash
 npx create-next-app --example blog-starter blog-starter-app
 ```
-
+ou
 ```bash
 yarn create next-app --example blog-starter blog-starter-app
 ```
-
+ou
 ```bash
 pnpm create next-app --example blog-starter blog-starter-app
 ```
@@ -44,7 +42,7 @@ entre na pasta do projeto pelo terminal e rode os comandos de start,
 npm install
 npm run dev
 ```
-
+ou
 ```bash
 yarn
 yarn dev

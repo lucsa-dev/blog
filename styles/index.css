@@ -11,3 +11,28 @@
         transition-colors;
     }
 }
+/* For all <code> */
+pre {
+    padding: 1rem;
+    background: black;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+code {
+    background: black;
+    color: white;
+    padding: .2rem;
+    border-radius: .5rem;
+}
+pre code {
+    font-family: MyFancyCustomFont, monospace;
+    font-size: inherit;
+    display: block;
+    margin: 1rem;
+    padding: 1rem;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    max-width: 100%;
+    min-width: 100px;
+}
