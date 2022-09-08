@@ -1,19 +1,19 @@
 ---
-title: 'Como hospedar um blog markdown com nextjs no github pages'
-excerpt: 'Um blog em markdown é uma excelente alternativa para quem quer um blog e gosta de editores de códigos como VS Code, no final deste artigo teremos um blog markdown em nextjs hospeda-do no github pages.'
+title: 'Como hospedar um site nextjs no github pages'
+excerpt: 'Um blog em markdown é uma excelente alternativa para quem quer escrever artigos via editor de códigos, no final deste artigo teremos um blog markdown em nextjs hospedado no github pages.'
 date: '2021-08-01T05:35:07.322Z'
 author:
   name: Lucas Almeida
   picture: '/assets/blog/authors/lucas.png'
 ---
 
-##Introdução
+## Introdução
 
-A idéia é clonar um exemplo de repositório oficial que já contém um blog markdown [blog markdown do nextjs](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)
+A idéia é clonar um exemplo de repositório oficial que já contém um [blog markdown do nextjs](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)
 
 clona-lo localmente, mudar o que quiser e configura-lo para gerar um site estático a ser hospedado pelo github pages.
 
-##Criar um novo projeto Blog Nextjs
+## Criar um novo projeto Blog Nextjs
 
 Clone o seguinte repositório:
 <https://github.com/vercel/next.js/tree/canary/examples/blog-starter>
@@ -34,7 +34,7 @@ yarn create next-app --example blog-starter blog-starter-app
 pnpm create next-app --example blog-starter blog-starter-app
 ```
 
-##Analizando o projeto
+## Analizando o projeto
 
 Cada arquivo markdown dentro da pasta /_posts é compilado como um post do blog. Dados como título, thumbnail, author, entre outros, também são declarados no arquivo com extensão .md
 
@@ -56,7 +56,7 @@ Acesse o link e veja seu blog pelo navegador.
 [navegue na documentação do nextjs](https://nextjs.org/docs) para aprender a modifica-lo como quiser.
 
 
-##Como gerar páginas estáticas com nextjs
+## Como gerar páginas estáticas com nextjs
 
 Para gerar páginas estáticas com next é necessário rodar o comando [next export](https://nextjs.org/docs/advanced-features/static-html-export), para isso vamos editar nosso arquivo **package.json** para acrescentar o comando export ao build.
 
@@ -71,6 +71,83 @@ acrescente ¨ && next export¨ à linha ¨build¨ como no exemplo abaixo.
 ```
 agora ao rodar o comando build uma pasta ./out será criada, com arquivos estáticos que servem seu blog, isso é útil para ser rodado como uma action do github.
 
-##Como configurar o github actions para servir um site nextjs estático.
+## Como configurar o github actions para servir um site nextjs estático.
 
-Com o github actions é possível rodar diversos comandos nodejs a cada push feito, o usaremos para gerar as páginas estáticas e coloca-los em uma nova branch.
+Com o github actions é possível automatizar a compilação com a utilização de  diversos comandos, inclusive node, disponíveis para serem executados direto de um repositório no github.
+
+Usaremos o Github Actions para em cada push gerar as páginas estáticas e coloca-las em uma nova branch pronta para seren servidas.
+
+crie um arquivo node.js.yml no diretório ./.github/workflows/
+```bash
+touch ./.github/workflows/node.js.yml
+```
+cole o seguinte código no arquivo node.js.yml
+```
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        node-version: 12
+    - run: npm install -g yarn
+    - run: yarn install --frozen-lockfile
+    - run: yarn build
+    - run: touch ./out/.nojekyll
+
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: out
+```
+Acesse a [documentação  do github actions](https://docs.github.com/pt/actions/learn-github-actions/understanding-github-actions) para obter mais informaões.
+
+agora seus próximos commits rodarão o build configurado acima.
+
+## Como configurar basePath e assetPrefix do next.config.js para github pages
+
+Para que as rotas, arquivos e imagens funcionem bem no github pages é necessário ativar as opções basePath e assetPrefix no seu arquivo next.config.js.
+
+caso ele não exista na raiz do projeto crie-o. com o comando 
+```
+touch next.config.js 
+```
+
+Insira o seguite código em next.config.js substitua /blog pelo nome do seu repositório.
+```
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
+    basePath: "/blog",
+    assetPrefix: "/blog"
+}
+module.exports = nextConfig
+```
+Também é possível passar o nome do seu repositório via variável de ambiente.
+
+## Problema com imagens
+As imagens também precisam do nome do diretório como prefixo para funcionarem, a unica solução que achei pra isso é inserindo como stringo ou como variável de ambiente manualmente nas tags <img> do projeto.
+
+Neste projeto apenas os componentes /components/avatar.tsx e /components/cover-image.tsx usam a tag <img>
+
+a alteração é apenas inserir a string com o nome do repositörio no início do atributo src, como o nome do meu repositório é blog, no meu caso fica assim:
+```
+<img src={"/blog" + picture} />
+```
+## Conclusão
+
+Agora temos um blog hospedado pronto para uso.
+[Projeto hospedaddo no github pages](https://lucasalmeida-ux.github.io/blog/)
+
+Agora só falta dar aquela personalizada com tailwindcss mas isso fica para o próximo post.
