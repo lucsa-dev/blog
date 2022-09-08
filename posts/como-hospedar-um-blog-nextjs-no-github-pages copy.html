@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/site.webmanifest"/><link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#000000"/><link rel="shortcut icon" href="/favicon/favicon.ico"/><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-config" content="/favicon/browserconfig.xml"/><meta name="theme-color" content="#000"/><link rel="alternate" type="application/rss+xml" href="/feed.xml"/><meta name="description" content="A statically generated blog example using Next.js and Markdown."/><meta property="og:image" content="https://og-image.vercel.app/Next.js%20Blog%20Starter%20Example.png?theme=light&amp;md=1&amp;fontSize=100px&amp;images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg"/><title>Como implementar modo dark em um projeto existente com nextjs e tailwindcss | Next.js Blog Example with Markdown</title><meta name="next-head-count" content="15"/><link rel="preload" href="/blog/_next/static/css/5715e19889d6cc3e.css" as="style"/><link rel="stylesheet" href="/blog/_next/static/css/5715e19889d6cc3e.css" data-n-g=""/><link rel="preload" href="/blog/_next/static/css/cf121497002c184d.css" as="style"/><link rel="stylesheet" href="/blog/_next/static/css/cf121497002c184d.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/blog/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/blog/_next/static/chunks/webpack-4d5208940e01a3dc.js" defer=""></script><script src="/blog/_next/static/chunks/framework-4556c45dd113b893.js" defer=""></script><script src="/blog/_next/static/chunks/main-c8f3a37e18433dd2.js" defer=""></script><script src="/blog/_next/static/chunks/pages/_app-0cac732de45017bf.js" defer=""></script><script src="/blog/_next/static/chunks/1a48c3c1-d0e34d37f0e89a1d.js" defer=""></script><script src="/blog/_next/static/chunks/739-e999928cf7a94f22.js" defer=""></script><script src="/blog/_next/static/chunks/pages/posts/%5Bslug%5D-85b202d74a8539c4.js" defer=""></script><script src="/blog/_next/static/Hp-9oepv9tCjlGtpu_D5O/_buildManifest.js" defer=""></script><script src="/blog/_next/static/Hp-9oepv9tCjlGtpu_D5O/_ssgManifest.js" defer=""></script></head><body><div id="__next"><script>!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','dark');var e=localStorage.getItem('theme');if('system'===e||(!e&&false)){var t='(prefers-color-scheme: dark)',m=window.matchMedia(t);if(m.media!==t||m.matches){d.style.colorScheme = 'dark';c.add('dark')}else{d.style.colorScheme = 'light';c.add('light')}}else if(e){c.add(e|| '')}else{c.add('dark')}if(e==='light'||e==='dark'||!e)d.style.colorScheme=e||'dark'}catch(e){}}()</script><div class="min-h-screen"><div class="p-3 fixed right-0 top-0"></div><main><div class="container mx-auto px-5"><h2 class="text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8"><a class="hover:underline" href="/blog">Blog</a>.</h2><article class="mb-32"><h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">Como implementar modo dark em um projeto existente com nextjs e tailwindcss</h1><div class="hidden md:block md:mb-12"><div class="flex items-center"><img src="/blog/assets/blog/authors/lucas.png" class="w-12 h-12 rounded-full mr-4" alt="Lucas Almeida"/><div class="text-xl font-bold">Lucas Almeida</div></div></div><div class="mb-8 md:mb-16 sm:mx-0"></div><div class="max-w-2xl mx-auto"><div class="block md:hidden mb-6"><div class="flex items-center"><img src="/blog/assets/blog/authors/lucas.png" class="w-12 h-12 rounded-full mr-4" alt="Lucas Almeida"/><div class="text-xl font-bold">Lucas Almeida</div></div></div><div class="mb-6 text-lg"><time dateTime="2021-09-08T14:44:07.322Z">September	8, 2021</time></div></div><div class="max-w-2xl mx-auto"><div class="markdown-styles_markdown__h_8de"><h2>Introdução</h2>
+<p>No primeiro post mostrei como este blog foi implementado a partir de um exemplo oficial do nextjs e hospedado no github pages. Agora preciso implementar o modo dark nele para conseguirmos ler o conteúdo sem prejudicar nossa visão. hoje implementaremos um botão com ícones de sol/lua para alternar entre os modos dark e light.</p>
+<p>Usaremos o next-themes que já nos fornece o funcionamento dos modos dark/light e o react-icons apenas para inserir os ícones de sol e lua.</p>
+<pre><code>npm install next-themes react-icons
+</code></pre>
+<p>ou</p>
+<pre><code>yarn add next-themes react-icons
+</code></pre>
+<h2>instalando o ThemeProvider</h2>
+<p>No <code>pages/_app.tsx</code> deveremos importar o <code>ThemeProvider</code> e usa-lo para envolver o </p>
+<p>Para habilitar o modo dark como padrão insira o atributo <code>defaultTheme="dark"</code> no <code>ThemeProvider</code></p>
+<p>O atributo <code>attribute="class"</code> é obrigatório para fazer funcionar com as classes do tailwind</p>
+<pre><code>import { ThemeProvider } from "next-themes";
+import { AppProps } from 'next/app'
+import '../styles/index.css'
+
+
+export default function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    &#x3C;ThemeProvider defaultTheme="dark" attribute="class">
+      &#x3C;Component {...pageProps} />
+    &#x3C;/ThemeProvider>
+    );
+}
+
+</code></pre>
+<h2>Habilitando o modo dark</h2>
+<p>No arquivo <code>tailwind.config.js</code> insira a linha <code>darkMode: 'class',</code> para habilitar o modo dark</p>
+<pre><code>module.exports = {
+  content: ['./components/**/*.tsx', './pages/**/*.tsx'],
+  darkMode: 'class',
+</code></pre>
+<h2>Definindo as classes css de textos e background</h2>
+<p>Setaremos as cores do texto e backgrounds em cada modo.
+No arquivo <code>styles/index.css</code> acrescente o seguinte código</p>
+<pre><code>@layer base {
+    body {
+        @apply bg-gray-50
+        dark:bg-gray-900
+        text-gray-900
+        dark:text-gray-50
+        transition-colors;
+    }
+}
+</code></pre>
+<h2>Componente para alternar modos.</h2>
+<p>Crie um componente chamado <code>components/themeToggle</code> com o seguinte conteúdo:</p>
+<pre><code>import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+
+// Aqui temos os ícones de Lua e Sol
+import { BiMoon, BiSun } from "react-icons/bi";
+
+export default function ThemeToggle() {
+    const [mounted, setMounted] = useState(false);
+    const { theme, setTheme } = useTheme();
+
+    useEffect(() => setMounted(true), []);
+    if (!mounted) return null;
+
+    function isDark() {
+        return theme === "dark";
+    }
+
+    return (
+        &#x3C;button
+            className="focus:outline-none"
+            onClick={() => setTheme(isDark() ? "light" : "dark")}
+            aria-label="Theme toggle"
+        >
+            {isDark() ? &#x3C;BiSun size={20} /> : &#x3C;BiMoon size={20} />}
+        &#x3C;/button>
+    );
+}
+</code></pre>
+<p>Agora é só importa-lo e usa-lo em qualquer lugar. aqui no blog coloquei no <code>components/layout.tsx</code> para ficar presente em todas as telas</p>
+<pre><code>&#x3C;div className="p-3 fixed right-0 top-0">
+  &#x3C;ThemeToggle />
+&#x3C;/div>
+</code></pre>
+</div></div></article></div></main></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"title":"Como implementar modo dark em um projeto existente com nextjs e tailwindcss","date":"2021-09-08T14:44:07.322Z","slug":"como-hospedar-um-blog-nextjs-no-github-pages copy","author":{"name":"Lucas Almeida","picture":"/assets/blog/authors/lucas.png"},"content":"\u003ch2\u003eIntrodução\u003c/h2\u003e\n\u003cp\u003eNo primeiro post mostrei como este blog foi implementado a partir de um exemplo oficial do nextjs e hospedado no github pages. Agora preciso implementar o modo dark nele para conseguirmos ler o conteúdo sem prejudicar nossa visão. hoje implementaremos um botão com ícones de sol/lua para alternar entre os modos dark e light.\u003c/p\u003e\n\u003cp\u003eUsaremos o next-themes que já nos fornece o funcionamento dos modos dark/light e o react-icons apenas para inserir os ícones de sol e lua.\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003enpm install next-themes react-icons\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eou\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eyarn add next-themes react-icons\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch2\u003einstalando o ThemeProvider\u003c/h2\u003e\n\u003cp\u003eNo \u003ccode\u003epages/_app.tsx\u003c/code\u003e deveremos importar o \u003ccode\u003eThemeProvider\u003c/code\u003e e usa-lo para envolver o \u003c/p\u003e\n\u003cp\u003ePara habilitar o modo dark como padrão insira o atributo \u003ccode\u003edefaultTheme=\"dark\"\u003c/code\u003e no \u003ccode\u003eThemeProvider\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eO atributo \u003ccode\u003eattribute=\"class\"\u003c/code\u003e é obrigatório para fazer funcionar com as classes do tailwind\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eimport { ThemeProvider } from \"next-themes\";\nimport { AppProps } from 'next/app'\nimport '../styles/index.css'\n\n\nexport default function MyApp({ Component, pageProps }: AppProps) {\n  return (\n    \u0026#x3C;ThemeProvider defaultTheme=\"dark\" attribute=\"class\"\u003e\n      \u0026#x3C;Component {...pageProps} /\u003e\n    \u0026#x3C;/ThemeProvider\u003e\n    );\n}\n\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch2\u003eHabilitando o modo dark\u003c/h2\u003e\n\u003cp\u003eNo arquivo \u003ccode\u003etailwind.config.js\u003c/code\u003e insira a linha \u003ccode\u003edarkMode: 'class',\u003c/code\u003e para habilitar o modo dark\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003emodule.exports = {\n  content: ['./components/**/*.tsx', './pages/**/*.tsx'],\n  darkMode: 'class',\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch2\u003eDefinindo as classes css de textos e background\u003c/h2\u003e\n\u003cp\u003eSetaremos as cores do texto e backgrounds em cada modo.\nNo arquivo \u003ccode\u003estyles/index.css\u003c/code\u003e acrescente o seguinte código\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e@layer base {\n    body {\n        @apply bg-gray-50\n        dark:bg-gray-900\n        text-gray-900\n        dark:text-gray-50\n        transition-colors;\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch2\u003eComponente para alternar modos.\u003c/h2\u003e\n\u003cp\u003eCrie um componente chamado \u003ccode\u003ecomponents/themeToggle\u003c/code\u003e com o seguinte conteúdo:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eimport { useEffect, useState } from \"react\";\nimport { useTheme } from \"next-themes\";\n\n// Aqui temos os ícones de Lua e Sol\nimport { BiMoon, BiSun } from \"react-icons/bi\";\n\nexport default function ThemeToggle() {\n    const [mounted, setMounted] = useState(false);\n    const { theme, setTheme } = useTheme();\n\n    useEffect(() =\u003e setMounted(true), []);\n    if (!mounted) return null;\n\n    function isDark() {\n        return theme === \"dark\";\n    }\n\n    return (\n        \u0026#x3C;button\n            className=\"focus:outline-none\"\n            onClick={() =\u003e setTheme(isDark() ? \"light\" : \"dark\")}\n            aria-label=\"Theme toggle\"\n        \u003e\n            {isDark() ? \u0026#x3C;BiSun size={20} /\u003e : \u0026#x3C;BiMoon size={20} /\u003e}\n        \u0026#x3C;/button\u003e\n    );\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eAgora é só importa-lo e usa-lo em qualquer lugar. aqui no blog coloquei no \u003ccode\u003ecomponents/layout.tsx\u003c/code\u003e para ficar presente em todas as telas\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e\u0026#x3C;div className=\"p-3 fixed right-0 top-0\"\u003e\n  \u0026#x3C;ThemeToggle /\u003e\n\u0026#x3C;/div\u003e\n\u003c/code\u003e\u003c/pre\u003e\n"}},"__N_SSG":true},"page":"/posts/[slug]","query":{"slug":"como-hospedar-um-blog-nextjs-no-github-pages copy"},"buildId":"Hp-9oepv9tCjlGtpu_D5O","assetPrefix":"/blog","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
