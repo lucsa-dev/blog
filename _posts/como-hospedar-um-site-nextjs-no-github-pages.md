@@ -69,6 +69,14 @@ acrescente ¨ && next export¨ à linha ¨build¨ como no exemplo abaixo.
 ```
 agora ao rodar o comando build uma pasta ./out será criada, com arquivos estáticos que servem seu blog, isso é útil para ser rodado como uma action do github.
 
+## Criar variável de ambiente
+Precisamos de uma variável de ambiente com o nome do nosso repositório para que as rotas funcionem, para isso vamos criar um arquivo `.env`.
+
+Crie o arquivo `touch .env` e insira a variável como abaixo 
+```
+REPO_NAME = "/nome-do-seu-repositorio-aqui"
+```
+
 ## Como configurar o github actions para servir um site nextjs estático.
 
 Com o github actions é possível automatizar a compilação com a utilização de  diversos comandos, inclusive node, disponíveis para serem executados direto de um repositório no github.
@@ -93,7 +101,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      REPO_NAME: "/blog"
+      REPO_NAME: "/nome-do-seu-repositorio-aqui"
     steps:
     - uses: actions/checkout@v1
       with:
@@ -124,27 +132,26 @@ caso ele não exista na raiz do projeto crie-o. com o comando
 touch next.config.js 
 ```
 
-Insira o seguite código em next.config.js substitua /blog pelo nome do seu repositório.
+Insira o seguite código em next.config.js substitua com a variável de ambiente do seu repositório.
 ```
 /**
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-    basePath: "/blog",
-    assetPrefix: "/blog"
+    basePath: process.env.REPO_NAME,
+    assetPrefix: process.env.REPO_NAME
 }
 module.exports = nextConfig
 ```
-Também é possível passar o nome do seu repositório via variável de ambiente.
 
 ## Problema com imagens
 As imagens também precisam do nome do diretório como prefixo para funcionarem, a unica solução que achei pra isso é inserindo como stringo ou como variável de ambiente manualmente nas tags <img> do projeto.
 
 Neste projeto apenas os componentes /components/avatar.tsx e /components/cover-image.tsx usam a tag <img>
 
-a alteração é apenas inserir a string com o nome do repositörio no início do atributo src, como o nome do meu repositório é blog, no meu caso fica assim:
+a alteração é apenas inserir a string com o nome do repositörio no início do atributo src, ou apenas usar a variável de ambiente que já definimos:
 ```
-<img src={"/blog" + picture} />
+<img src={process.env.REPO_NAME + picture} />
 ```
 ## Conclusão
 
