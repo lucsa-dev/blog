@@ -1,6 +1,6 @@
 ---
 title: 'Como hospedar um site nextjs no github pages'
-excerpt: 'Um blog em markdown é uma excelente alternativa para quem quer escrever artigos via editor de códigos, no final deste artigo teremos um blog markdown em nextjs hospedado no github pages.'
+excerpt: 'Neste post vamos clonar o blog em markdown exemplo do nextjs, e vamos hospeda-lo no github pages, mas os passos podem ser usados em qualquer projeto nextjs. No final teremos um blog markdown em nextjs hospedado no github pages.'
 date: '2021-08-01T05:35:07.322Z'
 author:
   name: Lucas Almeida
@@ -9,7 +9,7 @@ author:
 
 ## Introdução
 
-A idéia é clonar o repositório oficial que já contém um [blog markdown do nextjs](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)
+A idéia é clonar o repositório oficial que já contém um [blog markdown do nextjs](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) e configurar o build para gerar as páginas estáticas a serem hospedadas no github pages.
 
 ## Criar um novo projeto Blog Nextjs
 
@@ -91,9 +91,9 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    env:
+      REPO_NAME: "/blog"
     steps:
     - uses: actions/checkout@v1
       with:
@@ -108,6 +108,9 @@ jobs:
       with:
         folder: out
 ```
+1. em REPO_NAME: "/insira-aqui-o-nome-do-repositorio"
+
+
 Acesse a [documentação  do github actions](https://docs.github.com/pt/actions/learn-github-actions/understanding-github-actions) para obter mais informaões.
 
 agora seus próximos commits rodarão o build configurado acima.
@@ -146,6 +149,4 @@ a alteração é apenas inserir a string com o nome do repositörio no início d
 ## Conclusão
 
 Agora temos um blog hospedado pronto para uso.
-[Projeto hospedaddo no github pages](https://lucasalmeida-ux.github.io/blog/)
-
-Agora só falta dar aquela personalizada com tailwindcss mas isso fica para o próximo post.
+[Projeto hospedaddo no github pages](https://lucasalmeida-ux.github.io/blog/).

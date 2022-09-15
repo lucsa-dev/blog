@@ -1,5 +1,5 @@
 ---
-title: 'Como implementar modo dark em um projeto existente com nextjs e tailwindcss'
+title: 'Como implementar modo dark em um projeto nextjs e tailwindcss'
 excerpt: 'Hoje vamos implementar um botão com ícones de sol e lua para alternar entre os modos dark e light.'
 date: '2021-09-08T14:44:07.322Z'
 author:
