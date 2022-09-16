@@ -24,7 +24,8 @@ const Intro = () => {
       </motion.div>
       <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
         Hello, my name is Lucas Almeida 👋,<br /> i am a web developer.
-        <AiFillYoutube />
+        
+      <a href="" target="_blank"><AiFillYoutube /></a>
 
       </h4>
     </section>
