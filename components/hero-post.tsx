@@ -3,6 +3,7 @@ import DateFormatter from './date-formatter'
 import CoverImage from './cover-image'
 import Link from 'next/link'
 import type Author from '../interfaces/author'
+import { motion } from 'framer-motion';
 
 type Props = {
   title: string
@@ -28,11 +29,17 @@ const HeroPost = ({
       </div>
       <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
         <div>
-          <h3 className="mb-4 text-4xl lg:text-5xl leading-tight">
+          <motion.h3 className="mb-4 text-4xl lg:text-5xl leading-tight" whileHover={{
+            scale: [1, 1.4, 1.2],
+            rotate: [0, 10, -10, 0],
+            transition: {
+              duration: .2
+            }
+          }}>
             <Link as={`/posts/${slug}`} href="/posts/[slug]">
               <a className="hover:underline">{title}</a>
             </Link>
-          </h3>
+          </motion.h3>
           <div className="mb-4 md:mb-0 text-lg">
             <DateFormatter dateString={date} />
           </div>

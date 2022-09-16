@@ -80,7 +80,7 @@ export async function getStaticProps({ params }: Params) {
   'ogImage',
   'coverImage'
 ])
-const morePosts = allPosts.slice(1)
+const morePosts = allPosts
   const content = await markdownToHtml(post.content || '')
 
   return {
