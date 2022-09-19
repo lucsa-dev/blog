@@ -1,4 +1,4 @@
-import { AiFillYoutube } from "react-icons/ai";
+import { AiFillGithub, AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
 import { motion } from 'framer-motion';
 import Avatar from "./avatar";
 
@@ -16,18 +16,23 @@ const Intro = () => {
           transition: {
             delay: .4
           }
-        },      
+        },
       }}>
-        <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
+        <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight">
           Lucas Almeida
         </h1>
+        <h4>lucsa.dev@gmail.com</h4>
       </motion.div>
-      <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        Hello, my name is Lucas Almeida 👋,<br /> i am a web developer.
-        
-      <a href="" target="_blank"><AiFillYoutube /></a>
-
-      </h4>
+      <div>
+        <div className="mt-5 md:pl-8">
+          <h4 className="text-center md:text-left text-lg">
+            Hello, my name is Lucas Almeida 👋,<br /> i am a web developer.
+          </h4>
+          <a className="float-left text-4xl p-2" href="" target="_blank"><AiFillYoutube /></a>
+          <a className="float-left text-4xl p-2" href="" target="_blank"><AiFillGithub /></a>
+          <a className="float-left text-4xl p-2" href="" target="_blank"><AiFillTwitterCircle /></a>
+        </div>
+      </div>
     </section>
   )
 }
