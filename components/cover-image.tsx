@@ -10,7 +10,7 @@ type Props = {
 const CoverImage = ({ title, src, slug }: Props) => {
   const image = (
     <img
-      src={process.env.REPO_NAME + src}
+      src={process.env.NEXT_PUBLIC_REPO_NAME + src}
       alt={`Cover Image for ${title}`}
       className={cn('shadow-sm', {
         'hover:shadow-lg transition-shadow duration-200': slug,

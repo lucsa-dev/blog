@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      REPO_NAME: "/blog"
+      NEXT_PUBLIC_NEXT_PUBLIC_REPO_NAME: "/blog"
     steps:
     - uses: actions/checkout@v1
       with:

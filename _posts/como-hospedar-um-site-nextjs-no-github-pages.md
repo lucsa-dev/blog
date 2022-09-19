@@ -74,7 +74,7 @@ Precisamos de uma variável de ambiente com o nome do nosso repositório para qu
 
 Crie o arquivo `touch .env` e insira a variável como abaixo 
 ```
-REPO_NAME = "/nome-do-seu-repositorio-aqui"
+NEXT_PUBLIC_REPO_NAME = "/nome-do-seu-repositorio-aqui"
 ```
 
 ## Como configurar o github actions para servir um site nextjs estático.
@@ -101,7 +101,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      REPO_NAME: "/nome-do-seu-repositorio-aqui"
+      NEXT_PUBLIC_REPO_NAME: "/nome-do-seu-repositorio-aqui"
     steps:
     - uses: actions/checkout@v1
       with:
@@ -116,7 +116,7 @@ jobs:
       with:
         folder: out
 ```
-1. em REPO_NAME: "/insira-aqui-o-nome-do-repositorio"
+1. em NEXT_PUBLIC_REPO_NAME: "/insira-aqui-o-nome-do-repositorio"
 
 
 Acesse a [documentação  do github actions](https://docs.github.com/pt/actions/learn-github-actions/understanding-github-actions) para obter mais informaões.
@@ -138,8 +138,8 @@ Insira o seguite código em next.config.js substitua com a variável de ambiente
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-    basePath: process.env.REPO_NAME,
-    assetPrefix: process.env.REPO_NAME
+    basePath: process.env.NEXT_PUBLIC_REPO_NAME,
+    assetPrefix: process.env.NEXT_PUBLIC_REPO_NAME
 }
 module.exports = nextConfig
 ```
@@ -151,7 +151,7 @@ Neste projeto apenas os componentes /components/avatar.tsx e /components/cover-i
 
 a alteração é apenas inserir a string com o nome do repositörio no início do atributo src, ou apenas usar a variável de ambiente que já definimos:
 ```
-<img src={process.env.REPO_NAME + picture} />
+<img src={process.env.NEXT_PUBLIC_REPO_NAME + picture} />
 ```
 ## Conclusão
 

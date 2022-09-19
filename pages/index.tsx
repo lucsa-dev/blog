@@ -12,14 +12,12 @@ type Props = {
 }
 
 export default function Index({ allPosts }: Props) {
+  console.log('process.env ', process.env)
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
   return (
     <>
       <Layout>
-        <Head>
-          <title>Blog - Lucas Almeida</title>
-        </Head>
         <Container>
           <Intro />
           {heroPost && (
