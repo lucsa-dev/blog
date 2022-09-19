@@ -1,4 +1,4 @@
-import { AiFillGithub, AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
+import { AiFillGithub, AiFillLinkedin, AiFillTwitterCircle, AiFillYoutube } from "react-icons/ai";
 import { motion } from 'framer-motion';
 import Avatar from "./avatar";
 
@@ -28,9 +28,10 @@ const Intro = () => {
           <h4 className="text-center md:text-left text-lg">
             Hello, my name is Lucas Almeida 👋,<br /> i am a web developer.
           </h4>
-          <a className="float-left text-4xl p-2" href="" target="_blank"><AiFillYoutube /></a>
-          <a className="float-left text-4xl p-2" href="" target="_blank"><AiFillGithub /></a>
-          <a className="float-left text-4xl p-2" href="" target="_blank"><AiFillTwitterCircle /></a>
+          {/* <a className="float-left text-4xl p-2" href="" target="_blank"><AiFillYoutube /></a> */}
+          <a className="float-left text-4xl p-2" href="https://github.com/Lucasalmeida-ux/" target="_blank"><AiFillGithub /></a>
+          <a className="float-left text-4xl p-2" href="https://www.linkedin.com/in/lucassalmeida/" target="_blank"><AiFillLinkedin /></a>
+          {/* <a className="float-left text-4xl p-2" href="" target="_blank"><AiFillTwitterCircle /></a> */}
         </div>
       </div>
     </section>
