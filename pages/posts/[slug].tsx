@@ -20,6 +20,8 @@ type Props = {
 }
 
 export default function Post({ post, morePosts, preview }: Props) {
+  const filteredMorePosts = morePosts.filter((p) => p.slug !== post.slug)
+
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
@@ -47,7 +49,7 @@ export default function Post({ post, morePosts, preview }: Props) {
               />
               <PostBody content={post.content} />
             </article>
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+            {filteredMorePosts.length > 0 && <MoreStories posts={filteredMorePosts} />}
           </>
         )}
       </Container>
