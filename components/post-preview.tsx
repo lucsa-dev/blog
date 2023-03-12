@@ -27,13 +27,13 @@ const PostPreview = ({
       <div className="mb-5">
         {coverImage && <CoverImage slug={slug} title={title} src={coverImage} />}
       </div>
-      <motion.h3 className="text-3xl mb-3 leading-snug" whileHover={{
+      <motion.h3 className="text-3xl mb-3 leading-snug transition-colors hover:text-pink-600" whileHover={{
         scale: 1.1,
         transition: {
           duration: .2
         }
       }}>
-        <Link as={`/posts/${slug}`} href="/posts/[slug]" className='transition-colors hover:text-pink-600'>
+        <Link as={`/posts/${slug}`} href="/posts/[slug]">
           {title}
         </Link>
       </motion.h3>
