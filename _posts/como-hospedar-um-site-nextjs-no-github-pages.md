@@ -1,7 +1,7 @@
 ---
 title: 'Como hospedar um site nextjs no github pages'
 excerpt: 'Neste post vamos clonar o blog em markdown exemplo do nextjs, e vamos hospeda-lo no github pages, mas os passos podem ser usados em qualquer projeto nextjs. No final teremos um blog markdown em nextjs hospedado no github pages.'
-date: '2021-08-01T05:35:07.322Z'
+date: '2022-08-01T05:35:07.322Z'
 author:
   name: Lucas Almeida
   picture: '/assets/blog/authors/lucas.png'

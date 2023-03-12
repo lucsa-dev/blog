@@ -23,7 +23,7 @@ export default function ThemeToggle() {
     return (
         // E a logica em si
         <button
-            className="focus:outline-none"
+            className="focus:outline-none transition-colors hover:text-pink-600"
             onClick={() => setTheme(isDark() ? "light" : "dark")}
             aria-label="Theme toggle"
         >

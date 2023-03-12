@@ -12,6 +12,7 @@ type Props = {
 }
 
 export default function Index({ allPosts }: Props) {
+  console.log("🚀 ~ file: index.tsx:15 ~ Index ~ allPosts:", allPosts)
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
   return (

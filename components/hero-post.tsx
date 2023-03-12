@@ -29,6 +29,7 @@ const HeroPost = ({
       </div>
       <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
         <div>
+          <Link as={`/posts/${slug}`} href="/posts/[slug]" className="transition-colors hover:text-pink-500">
           <motion.h3 className="mb-4 text-4xl lg:text-5xl leading-tight" whileHover={{
             scale: [1, 1.4, 1.2],
             rotate: [0, 10, -10, 0],
@@ -36,10 +37,9 @@ const HeroPost = ({
               duration: .2
             }
           }}>
-            <Link as={`/posts/${slug}`} href="/posts/[slug]">
-              <a className="hover:underline">{title}</a>
-            </Link>
+              {title}
           </motion.h3>
+            </Link>
           <div className="mb-4 md:mb-0 text-lg">
             <DateFormatter dateString={date} />
           </div>
