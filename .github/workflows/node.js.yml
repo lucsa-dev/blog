@@ -16,7 +16,7 @@ jobs:
       with:
         node-version: 12
     - run: npm install -g yarn
-    - run: rm -rf node_modules && yarn cache clean && yarn install --frozen-lockfile
+    - run: rm -rf node_modules && yarn cache clean && yarn install
     - run: yarn build
     - run: touch ./out/.nojekyll
 
