@@ -13,8 +13,8 @@ const Logo = () => {
         }
       }}>
        <div className='text-3xl text-center font-normal'>
-          <Link href="" >
-          <span className='text-pink-600'>&lt;</span><span className="font-bold">luc<span className="text-pink-600">S</span>A.dev</span> <span className="text-pink-600">/&gt;</span>
+          <Link href="/" >
+          <a><span className='text-pink-600'>&lt;</span><span className="font-bold">luc<span className="text-pink-600">S</span>A.dev</span> <span className="text-pink-600">/&gt;</span></a>
         </Link> 
         </div>
         </motion.h3>)
