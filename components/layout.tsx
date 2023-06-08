@@ -1,26 +1,29 @@
-import Meta from './meta'
-import ThemeToggle from './themeToggle'
-import Logo from './logo'
+import Meta from "./meta";
+import ThemeToggle from "./themeToggle";
+import Logo from "./logo";
+import { Menu, Layout } from "antd";
 
+const { Header, Content, Footer } = Layout;
 type Props = {
-  preview?: boolean
-  children: React.ReactNode
-}
+  preview?: boolean;
+  children: React.ReactNode;
+};
 
-const Layout = ({ preview, children }: Props) => {
-  return <>
+const LayoutBlog = ({ preview, children }: Props) => {
+  return (
+    <div className="min-h-screen px-4">
       <Meta />
-      <div className="min-h-screen">
-        <div className="p-3 fixed right-0 top-0">
+      <div className="flex p-3">
+        <div className="flex-1 mt-2">
+          <Logo />
+        </div>
+        <div className="flex-none p-3">
           <ThemeToggle />
         </div>
-        <main>
-            <div className="">
-            {children}
-              </div>
-          </main>
       </div>
-    </>
-}
+      <main>{children}</main>
+    </div>
+  );
+};
 
-export default Layout
+export default LayoutBlog;
