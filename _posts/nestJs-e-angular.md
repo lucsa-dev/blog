@@ -1,6 +1,6 @@
 ---
-title: "Angular e NestJs atilizam a mesma arquitetura, vamos ver as principais semelhanças e diferenças entre eles ?"
-excerpt: "NestJs é uma estrutura node.js para criação de aplicações do lado do servidor utilizando typescript, ele provê uma arquitetura escalável e testável baseada em Angular. O que em outras palavras significa que NestJS e Angular são incrivelmente semelhantes."
+title: "Angular e NestJS: Utilizam a mesma arquitetura? Vamos explorar as principais semelhanças e diferenças entre eles."
+excerpt: "o NestJS é uma estrutura Node.js para criação de aplicações do lado do servidor utilizando TypeScript. Ele oferece uma arquitetura escalável e testável inspirada no Angular. Isso significa que o NestJS e o Angular possuem várias semelhanças e vamos explora-las."
 date: "2023-06-10T02:17:00.322Z"
 author:
   name: Lucas S. Almeida
@@ -9,15 +9,11 @@ author:
 
 ## Semelhanças entre os framworks NestJS e Angular
 
-NestJs é uma estrutura node.js para criação de aplicações do lado do servidor utilizando typescript, ele provê uma arquitetura escalável e testável baseada em Angular. O que em outras palavras significa que NestJS e Angular são incrivelmente semelhantes.
+Com essa combinação, é possível construir aplicações completas, tanto no back-end quanto no front-end, utilizando a mesma arquitetura, linguagem e testes.
 
-como o Angular é um framwork front-end, com esse combo é possível construir aplicações completas utilizando a mesma arquitetura, linguagem e testes tanto no back-end como no front-end 😍
+- A nomenclatura dos arquivos segue o mesmo padrão: `nome.função.extensão`. No NestJS, um controller seria `cat.controller.ts`, enquanto no Angular, um componente seria `cat.component.ts`. Alguns arquivos até compartilham o mesmo nome, como módulos e serviços. Por exemplo: `app.module.ts` e `cat.service.ts`.
 
-Se você conhece angular e ainda não conhece o NestJs, ou vice-versa, da uma olhada nessas semelhanças.
-
-- A nomenclatura dos arquivos seguem o mesmo padrão `nome . função . extensão`
-  no NestJS um controller seria `cat.controller.ts` no Angular um componente seria `cat.component.ts`. alguns arquivos até carregam o mesmo nome como módulos e serviços por exemplo: `app.module.ts` `cat.service.ts`
-- O arquivo de inicialização do NestJs e do angular possuem o mesmo nome, diretório e função. O `src/main.js` cria o bootstrap e inicia o AppModule.
+- O arquivo de inicialização de ambos possue o mesmo nome, diretório e função. O arquivo `src/main.js` realiza o bootstrap e inicia o AppModule.
 
 NestJS
 
@@ -37,7 +33,7 @@ platformBrowserDynamic()
   .catch((err) => console.error(err));
 ```
 
-- O AppModule passado para o bootstrap no arquivo `src/main.js` é o módulo principal da aplicação, perceba como são semelhantes.
+- No arquivo `src/main.js`, o `AppModule` é passado como parâmetro para o bootstrap. Tanto no NestJS quanto no Angular o AppModule representa o módulo principal da aplicação.
 
 ```typescript
 @Module({
@@ -48,7 +44,7 @@ platformBrowserDynamic()
 export class CatsModule {}
 ```
 
-NestJS - Exporta uma classe com o nome do Módulo com um decorador `@Module()`que recebe o objeto de configuração.
+NestJS - O módulo é exportado como uma classe decorada com @Module() que recebe um objeto de configuração."
 
 ```typescript
 @NgModule({
@@ -64,7 +60,7 @@ Angular - A única diferença é o nome do decorador `@NgModule()`.
 
 import, export, providers são idênticos.
 
-- Para criar um service o decorator tem o mesmo nome `@Injectable()`
+- Ao criar um serviço tanto no aplicativo no NestJS quanto no Angular é utilizado o decorator @Injectable().
 
 NestJS / Angular
 
@@ -73,7 +69,7 @@ NestJS / Angular
 class HeroService {}
 ```
 
-- Injeção de dependencia também é idêntico. Tudo é classe e as dependência sãp passadas via constructor,
+- Injeção de dependencia também é idêntica. Tudo é classe e as dependência são passadas via constructor,
 
 ```typescript
 @Component({ … })
