@@ -11,7 +11,7 @@ author:
 
 Com essa combinação, é possível construir aplicações completas, tanto no back-end quanto no front-end, utilizando a mesma arquitetura, linguagem e testes.
 
-### Nomeclatura dos arquivos
+## Nomeclatura dos arquivos
 
 A nomenclatura dos arquivos segue o mesmo padrão: `nome.função.extensão`. No NestJS, um controller seria `cat.controller.ts`, enquanto no Angular, um componente seria `cat.component.ts`. Alguns arquivos até compartilham o mesmo nome, como módulos e serviços. Por exemplo: `app.module.ts` e `cat.service.ts`.
 
