@@ -7,13 +7,17 @@ author:
   picture: "/assets/blog/authors/lucas.png"
 ---
 
-## Semelhanças entre os framworks NestJS e Angular
+# Semelhanças entre os framworks NestJS e Angular
 
 Com essa combinação, é possível construir aplicações completas, tanto no back-end quanto no front-end, utilizando a mesma arquitetura, linguagem e testes.
 
-- A nomenclatura dos arquivos segue o mesmo padrão: `nome.função.extensão`. No NestJS, um controller seria `cat.controller.ts`, enquanto no Angular, um componente seria `cat.component.ts`. Alguns arquivos até compartilham o mesmo nome, como módulos e serviços. Por exemplo: `app.module.ts` e `cat.service.ts`.
+### Nomeclatura dos arquivos
 
-- O arquivo de inicialização de ambos possue o mesmo nome, diretório e função. O arquivo `src/main.js` realiza o bootstrap e inicia o AppModule.
+A nomenclatura dos arquivos segue o mesmo padrão: `nome.função.extensão`. No NestJS, um controller seria `cat.controller.ts`, enquanto no Angular, um componente seria `cat.component.ts`. Alguns arquivos até compartilham o mesmo nome, como módulos e serviços. Por exemplo: `app.module.ts` e `cat.service.ts`.
+
+## main.js
+
+O arquivo de inicialização de ambos possue o mesmo nome, diretório e função. O arquivo `src/main.js` realiza o bootstrap e inicia o AppModule.
 
 NestJS
 
@@ -33,7 +37,9 @@ platformBrowserDynamic()
   .catch((err) => console.error(err));
 ```
 
-- No arquivo `src/main.js`, o `AppModule` é passado como parâmetro para o bootstrap. Tanto no NestJS quanto no Angular o AppModule representa o módulo principal da aplicação.
+## Modulorização
+
+No arquivo `src/main.js`, o `AppModule` é passado como parâmetro para o bootstrap. Tanto no NestJS quanto no Angular o AppModule representa o módulo principal da aplicação.
 
 ```typescript
 @Module({
@@ -60,7 +66,9 @@ Angular - A única diferença é o nome do decorador `@NgModule()`.
 
 import, export, providers são idênticos.
 
-- Ao criar um serviço tanto no aplicativo no NestJS quanto no Angular é utilizado o decorator @Injectable().
+## Serviços
+
+Ao criar um serviço tanto no aplicativo no NestJS quanto no Angular é utilizado o decorator @Injectable().
 
 NestJS / Angular
 
@@ -78,7 +86,9 @@ class HeroListComponent {
 }
 ```
 
-- Ambos possuem CLI que geram códigos prontos já com módulos configurados. exemplo:
+## CLI
+
+Ambos possuem CLI que geram códigos prontos já com módulos configurados. exemplo:
 
 ```bash
 ng generate component product-details
