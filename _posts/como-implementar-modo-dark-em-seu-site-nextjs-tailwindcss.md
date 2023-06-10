@@ -1,22 +1,24 @@
 ---
-title: 'Como implementar modo dark em um projeto nextjs e tailwindcss'
-excerpt: 'Hoje vamos implementar um botão com ícones de sol e lua para alternar entre os modos dark e light.'
-date: '2022-09-08T14:44:07.322Z'
+title: "Como implementar modo dark em um projeto nextjs e tailwindcss"
+excerpt: "Vamos implementar um botão com ícones de sol e lua para alternar entre os modos dark e light."
+date: "2022-09-08T14:44:07.322Z"
 author:
   name: Lucas Almeida
-  picture: '/assets/blog/authors/lucas.png'
+  picture: "/assets/blog/authors/lucas.png"
 ---
 
-## Introdução
+## Como implementar modo dark em um projeto nextjs e tailwindcss
 
-No primeiro post mostrei como este blog foi implementado a partir de um exemplo oficial do nextjs e hospedado no github pages. Agora preciso implementar o modo dark nele para conseguirmos ler o conteúdo sem prejudicar nossa visão. hoje implementaremos um botão com ícones de sol/lua para alternar entre os modos dark e light. 
+No primeiro post mostrei como este blog foi implementado a partir de um exemplo oficial do nextjs e hospedado no github pages. Agora preciso implementar o modo dark nele para conseguirmos ler o conteúdo sem prejudicar nossa visão. hoje implementaremos um botão com ícones de sol/lua para alternar entre os modos dark e light.
 
 Usaremos o next-themes que já nos fornece o funcionamento dos modos dark/light e o react-icons apenas para inserir os ícones de sol e lua.
 
 ```
 npm install next-themes react-icons
 ```
+
 ou
+
 ```
 yarn add next-themes react-icons
 ```
@@ -28,6 +30,7 @@ No `pages/_app.tsx` deveremos importar o `ThemeProvider` e usa-lo para envolver 
 Para habilitar o modo dark como padrão insira o atributo `defaultTheme="dark"` no `ThemeProvider`
 
 O atributo `attribute="class"` é obrigatório para fazer funcionar com as classes do tailwind
+
 ```
 import { ThemeProvider } from "next-themes";
 import { AppProps } from 'next/app'
@@ -47,6 +50,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 ## Habilitando o modo dark
 
 No arquivo `tailwind.config.js` insira a linha `darkMode: 'class',` para habilitar o modo dark
+
 ```
 module.exports = {
   content: ['./components/**/*.tsx', './pages/**/*.tsx'],
@@ -57,6 +61,7 @@ module.exports = {
 
 Setaremos as cores do texto e backgrounds em cada modo.
 No arquivo `styles/index.css` acrescente o seguinte código
+
 ```
 @layer base {
     body {
@@ -102,6 +107,7 @@ export default function ThemeToggle() {
     );
 }
 ```
+
 Agora é só importa-lo e usa-lo em qualquer lugar. aqui no blog coloquei no `components/layout.tsx` para ficar presente em todas as telas
 
 ```
